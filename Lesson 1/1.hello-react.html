@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 使用jsx语法需要使用babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- 使用jsx -->
+    <script type="text/babel">
+      // 定义变量
+      let message = 'hello world';
+      // 定义方法
+      function handleClick() {
+        message = 'hello react';
+        // 通知reactDOM 更新页面
+        render();
+      }
+      function render() {
+        // ReactDOM
+        ReactDOM.render(
+          <div>
+            <h2>{message}</h2>
+            <button onClick={handleClick}>修改文字</button>
+          </div>,
+          document.getElementById('app')
+        );
+      }
+      // 首次调用render 渲染初始界面
+      render();
+    </script>
+  </body>
+</html>
