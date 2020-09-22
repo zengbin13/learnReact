@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 使用jsx语法需要使用babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            message: 'hello react',
+            counter: 100,
+          };
+          //全局改变方法的this指向
+          this.handleClick = this.handleClick.bind(this);
+        }
+        render() {
+          return (
+            <div>
+              <div>
+                <button onClick={this.handleClick.bind(this)}>bind显示绑定1</button>
+                <button onClick={this.handleClick}>bind显示绑定2</button>
+              </div>
+              <div>
+                <button onClick={this.increment}>使用class field: +</button>
+              </div>
+              <div>
+                <button
+                  onClick={() => {
+                    this.decrement();
+                  }}
+                >
+                  隐式绑定: -
+                </button>
+              </div>
+            </div>
+          );
+        }
+        handleClick() {
+          alert(this.state.message);
+        }
+        increment = () => {
+          alert((this.state.counter += 1));
+        };
+        decrement() {
+          alert((this.state.counter -= 1));
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

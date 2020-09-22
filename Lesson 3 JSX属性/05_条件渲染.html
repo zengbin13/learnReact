@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 使用jsx语法需要使用babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            isLogin: true,
+          };
+        }
+        render() {
+          let { isLogin } = this.state;
+          // 1.方案一:通过if判断: 逻辑代码非常多的情况
+          let welcome = null;
+          let btntext = null;
+          if (isLogin) {
+            welcome = <p>欢迎回来</p>;
+            btntext = '退出';
+          } else {
+            welcome = <p>请先登录</p>;
+            btntext = '登录';
+          }
+          return (
+            <div>
+              <h2>使用if条件判断</h2>
+              <div>
+                {welcome}
+                <button
+                  onClick={() => {
+                    this.handleClick();
+                  }}
+                >
+                  {btntext}
+                </button>
+              </div>
+              <hr />
+              <h2>使用三元运算符</h2>
+              <div>
+                <p>{isLogin ? '欢迎回来' : '请先登录'}</p>
+                {isLogin ? <p>欢迎回来</p> : <p>请先登录</p>}
+                <button
+                  onClick={() => {
+                    this.handleClick();
+                  }}
+                >
+                  {isLogin ? '退出' : '登录'}
+                </button>
+              </div>
+              <h2>使用逻辑与&&</h2>
+              <div>
+                <p>{isLogin && '你好呀, 欢迎回来'}</p>
+                {isLogin && <p>你好呀, 欢迎回来</p>}
+              </div>
+            </div>
+          );
+        }
+        handleClick() {
+          this.setState({
+            isLogin: !this.state.isLogin,
+          });
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

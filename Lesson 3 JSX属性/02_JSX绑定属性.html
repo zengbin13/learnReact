@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 使用jsx语法需要使用babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            title: '标题',
+            imgUrl: 'https://static.docschina.org/docschina-qr1.jpeg',
+            link: 'https://baidu.com',
+            active: true,
+          };
+        }
+        render() {
+          let { title, imgUrl, link, active } = this.state;
+          return (
+            <div>
+              {/* 1.绑定普通属性 */}
+              <p title={'title'}>绑定title属性</p>
+              <p title={title}>绑定title属性</p>
+              {/* JSX中单标签必须闭合 */}
+              <img src={imgUrl} alt='' width={'100px'} />
+              <a href={link} target='_blank'>
+                百度一下
+              </a>
+              <br />
+              <label htmlFor='input'>
+                输入框:
+                <input type='text' id='input' />
+              </label>
+              {/* 2.绑定class*/}
+              <p className='box'>class属性</p>
+              <p className={'box ' + (active ? 'active' : '')}>class属性动态绑定</p>
+              {/* 3.绑定style*/}
+              <p style={{ color: 'red', fontSize: '36px' }}>style属性</p>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>
