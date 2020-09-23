@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- react -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 使用jsx语法需要使用babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            message: 'hello react',
+          };
+        }
+        render() {
+          return <div>{this.state.message}</div>;
+        }
+      }
+      class BookTable extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            bookList: [
+              { id: 0, bookName: '00', bookDate: '00', bookPrice: 20, bookNum: 0 },
+              { id: 1, bookName: '00', bookDate: '00', bookPrice: 20, bookNum: 0 },
+              { id: 2, bookName: '00', bookDate: '00', bookPrice: 20, bookNum: 0 },
+              { id: 3, bookName: '00', bookDate: '00', bookPrice: 20, bookNum: 0 },
+            ],
+          };
+        }
+        render() {
+          return;
+          <div>
+            <table>
+              <thead>
+                <td></td>
+                <td>书籍名称</td>
+                <td>出版日期</td>
+                <td>书籍价格</td>
+                <td>购买数量</td>
+                <td>操作</td>
+              </thead>
+              <tbody>
+                {this.state.bookList.map(item, index => {
+                  return (
+                    <BookItem
+                      index={index}
+                      bookName={item.bookName}
+                      bookDate={item.bookDate}
+                      bookPrice={item.bookPrice}
+                    />
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>;
+        }
+      }
+      class BookItem extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          const { index, bookName, bookPrice, bookDate } = this.props;
+          return (
+            <tr>
+              <td>{index}</td>
+              <td>{bookName}</td>
+              <td>{bookDate}</td>
+              <td>{bookPrice}</td>
+              <td>
+                <BookButton />
+              </td>
+              <td>
+                <BookRemove />
+              </td>
+            </tr>
+          );
+        }
+      }
+      class BookButton extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return (
+            <div>
+              <button>-</button>
+              {this.props.bookNum}
+              <button>+</button>
+            </div>
+          );
+        }
+      }
+      class BookRemove extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return <button>移除</button>;
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>
