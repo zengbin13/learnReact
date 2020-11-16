@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      let bar = 'bar的数据',
+        baz = 'baz的数据';
+      function foo(...args) {
+        console.log(args);
+      }
+      foo('bar', 'foo', 'baz');
+      foo`bar foo baz`;
+      foo`${bar} foo baz`;
+    </script>
+  </body>
+</html>
